@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ProjectPersional.Data.Configuration
 {
-    public class CategoryConfiguration : IEntityTypeConfiguration<Category>;
+    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {

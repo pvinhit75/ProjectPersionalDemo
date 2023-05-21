@@ -9,16 +9,25 @@ using System.Threading.Tasks;
 
 namespace ProjectPersional.Data.Configuration
 {
-    internal class ProductConfiguration : IEntityTypeConfiguration<Product>
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.ToTable("Product");
-            builder.HasKey(p => p.Id);
-            builder.Property(p => p.Price).IsRequired();
-            builder.Property(p => p.OriginalPrice).IsRequired();
-            builder.Property(p => p.Stock).IsRequired().HasDefaultValue(0);
-            builder.Property(p => p.ViewCount).IsRequired().HasDefaultValue(0);
+            builder.ToTable("Products");
+
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
+
+
+            builder.Property(x => x.Price).IsRequired();
+
+            builder.Property(x => x.OriginalPrice).IsRequired();
+
+            builder.Property(x => x.Stock).IsRequired().HasDefaultValue(0);
+
+            builder.Property(x => x.ViewCount).IsRequired().HasDefaultValue(0);
+
+
         }
     }
 }
