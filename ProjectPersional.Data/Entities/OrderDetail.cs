@@ -13,7 +13,8 @@ namespace ProjectPersional.Data.Entities
         public int Quanlity { get; set; }
         public decimal Price { get; set; }  
         public Order Order { get; set; }
-
-        public Product Product { get; set; }    
-    }
+        public Product Product { get; set; }
+        public Order Order { get; set; }
+        public Product Product { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
 }
