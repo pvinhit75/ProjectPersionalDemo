@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using ProjectPersional.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,9 @@ namespace ProjectPersional.Data.EF
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<AppConfig> AppConfigs { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CategoryTrans>
+
     }
 }
