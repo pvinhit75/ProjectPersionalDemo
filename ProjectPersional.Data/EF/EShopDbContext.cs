@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Internal;
 using ProjectPersional.Data.Configuration;
 using ProjectPersional.Data.Entities;
+using ProjectPersional.Data.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -20,6 +21,7 @@ namespace ProjectPersional.Data.EF
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //configuration using fluent API
             modelBuilder.ApplyConfiguration(new AppConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
@@ -33,7 +35,13 @@ namespace ProjectPersional.Data.EF
             modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
-            base.OnModelCreating(modelBuilder);
+
+            //Data seeding
+            modelBuilder.Seed();
+
+            //base.OnModelCreating(modelBuilder);
+
+
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

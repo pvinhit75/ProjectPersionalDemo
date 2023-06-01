@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectPersional.Data.EF;
 
@@ -11,9 +12,11 @@ using ProjectPersional.Data.EF;
 namespace ProjectPersional.Data.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230601173111_createDB1")]
+    partial class createDB1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -385,7 +388,7 @@ namespace ProjectPersional.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 6, 2, 0, 50, 43, 211, DateTimeKind.Local).AddTicks(9144),
+                            DateCreated = new DateTime(2023, 6, 2, 0, 31, 11, 146, DateTimeKind.Local).AddTicks(2192),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
