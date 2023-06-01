@@ -13,8 +13,11 @@ namespace ProjectPersional.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<AppConfig> builder)
         {
-            builder.HasKey(b => b.Key);
-            builder.Property(b=>b.Value).IsRequired(true);
+            builder.ToTable("AppConfigs");
+
+            builder.HasKey(x => x.Key);
+
+            builder.Property(x => x.Value).IsRequired(true);
         }
     }
 }

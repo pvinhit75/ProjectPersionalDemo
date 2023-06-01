@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectPersional.Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,6 @@ namespace ProjectPersional.Data.Entities
         public string Message { get; set; }
         public TransactionStatus Status {get; set;}
         public Guid UserId { get; set; }    
-        public AppUser AppUser { get; set; }    
+      
     }
 }
