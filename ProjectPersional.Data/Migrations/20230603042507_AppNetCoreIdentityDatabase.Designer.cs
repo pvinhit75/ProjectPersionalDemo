@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectPersional.Data.EF;
 
@@ -11,9 +12,11 @@ using ProjectPersional.Data.EF;
 namespace ProjectPersional.Data.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230603042507_AppNetCoreIdentityDatabase")]
+    partial class AppNetCoreIdentityDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,13 +107,6 @@ namespace ProjectPersional.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -194,16 +190,6 @@ namespace ProjectPersional.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "f6eabb57-9725-4e40-92ff-af3730195d85",
-                            Description = "Administrator role",
-                            Name = "admin",
-                            NormalizedName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("ProjectPersional.Data.Entities.AppUser", b =>
@@ -283,27 +269,6 @@ namespace ProjectPersional.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "d57ac5f7-a310-46fc-a0f2-5a7815bb37da",
-                            Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "tedu.international@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "Toan",
-                            LastName = "Bach",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "tedu.international@gmail.com",
-                            NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAECy29QIUQi8N3+1FtM6RTfTvlgRVvFpuJEf5lI0/K4G/kZyHZOiedWWBLWGtGWrLQw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("ProjectPersional.Data.Entities.Cart", b =>
@@ -648,7 +613,7 @@ namespace ProjectPersional.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 6, 3, 12, 4, 8, 866, DateTimeKind.Local).AddTicks(2021),
+                            DateCreated = new DateTime(2023, 6, 3, 11, 25, 7, 126, DateTimeKind.Local).AddTicks(7476),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Internal;
 using ProjectPersional.Data.Configuration;
@@ -9,16 +11,19 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjectPersional.Data.EF
 {
-    public class EShopDbContext : DbContext
+    public class EShopDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
+        
         public EShopDbContext(DbContextOptions options) : base(options)
         {
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //configuration using fluent API
@@ -35,13 +40,21 @@ namespace ProjectPersional.Data.EF
             modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+            
+            modelBuilder.ApplyConfiguration(new AppUserCongfiguration());
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
 
+            //Indentity
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
+
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims");
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
             //Data seeding
             modelBuilder.Seed();
 
-            //base.OnModelCreating(modelBuilder);
-
-
+            base.OnModelCreating(modelBuilder);
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -50,14 +63,10 @@ namespace ProjectPersional.Data.EF
         public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Language> Languages { get; set; }
-
         public DbSet<Order> Orders { get; set; }
-
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
-
         public DbSet<Promotion> Promotions { get; set; }
-
         public DbSet<Transaction> Transactions { get; set; }
 
     }
